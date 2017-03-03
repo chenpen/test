@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fh.dao.oil.OilPurchaseMapper" >
+  <resultMap id="BaseResultMap" type="com.fh.entity.oil.OilPurchase" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="oil_level_id" property="oilLevelId" jdbcType="INTEGER" />
+    <result column="oil_category_id" property="oilCategoryId" jdbcType="INTEGER" />
+    <result column="oil_flag_id" property="oilFlagId" jdbcType="INTEGER" />
+    <result column="oil_area_id" property="oilAreaId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="purchase_no" property="purchaseNo" jdbcType="VARCHAR" />
+    <result column="fetch_time" property="fetchTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, merchant_id, publisher_id, quantity, status, oil_level_id, oil_category_id, oil_flag_id, 
+    oil_area_id, create_time, remark, description, price, purchase_no, fetch_time, last_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_purchase
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from oil_purchase
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fh.entity.oil.OilPurchase" >
+    insert into oil_purchase (id, merchant_id, publisher_id, 
+      quantity, status, oil_level_id, 
+      oil_category_id, oil_flag_id, oil_area_id, 
+      create_time, remark, description, 
+      price, purchase_no, fetch_time, 
+      last_update_time)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{publisherId,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{oilLevelId,jdbcType=INTEGER}, 
+      #{oilCategoryId,jdbcType=INTEGER}, #{oilFlagId,jdbcType=INTEGER}, #{oilAreaId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{purchaseNo,jdbcType=VARCHAR}, #{fetchTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fh.entity.oil.OilPurchase" >
+    insert into oil_purchase
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="oilLevelId != null" >
+        oil_level_id,
+      </if>
+      <if test="oilCategoryId != null" >
+        oil_category_id,
+      </if>
+      <if test="oilFlagId != null" >
+        oil_flag_id,
+      </if>
+      <if test="oilAreaId != null" >
+        oil_area_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="purchaseNo != null" >
+        purchase_no,
+      </if>
+      <if test="fetchTime != null" >
+        fetch_time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oilLevelId != null" >
+        #{oilLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="oilCategoryId != null" >
+        #{oilCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="oilFlagId != null" >
+        #{oilFlagId,jdbcType=INTEGER},
+      </if>
+      <if test="oilAreaId != null" >
+        #{oilAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNo != null" >
+        #{purchaseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchTime != null" >
+        #{fetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fh.entity.oil.OilPurchase" >
+    update oil_purchase
+    <set >
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oilLevelId != null" >
+        oil_level_id = #{oilLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="oilCategoryId != null" >
+        oil_category_id = #{oilCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="oilFlagId != null" >
+        oil_flag_id = #{oilFlagId,jdbcType=INTEGER},
+      </if>
+      <if test="oilAreaId != null" >
+        oil_area_id = #{oilAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNo != null" >
+        purchase_no = #{purchaseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchTime != null" >
+        fetch_time = #{fetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fh.entity.oil.OilPurchase" >
+    update oil_purchase
+    set merchant_id = #{merchantId,jdbcType=INTEGER},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      oil_level_id = #{oilLevelId,jdbcType=INTEGER},
+      oil_category_id = #{oilCategoryId,jdbcType=INTEGER},
+      oil_flag_id = #{oilFlagId,jdbcType=INTEGER},
+      oil_area_id = #{oilAreaId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      purchase_no = #{purchaseNo,jdbcType=VARCHAR},
+      fetch_time = #{fetchTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="listPurchasePage" parameterType="com.fh.entity.vo.OilPurchaseQuery" resultMap="BaseResultMap">
+    <![CDATA[ SELECT
+    <include refid="Base_Column_List" />
+    FROM oil_purchase a
+    where 1=1
+    <if test=" status!=null and status !=''">
+      AND a.status = #{status}
+    </if>
+    <if test=" createTimeBegin!=null and createTimeBegin !=''">
+      AND a.create_time >={createTimeBegin}
+    </if>
+    <if test=" createTimeEnd!=null and createTimeEnd !=''">
+      AND a.create_time <= {createTimeEnd}
+    </if>
+    <if test=" oilCategoryId!=null and oilCategoryId !=''">
+      AND a.oil_category_id = #{oilCategoryId}
+    </if>
+    <if test=" publisherId!=null and publisherId !=''">
+      AND a.publisher_id = #{publisherId}
+    </if>
+    <if test=" acceptOffer!=null and acceptOffer !='' and acceptOffer =='1'">
+      AND  EXISTS (SELECT 1 FROM oil_purchase_offer b WHERE a.id = b.oil_purchase_id)
+    </if>
+
+
+]]>
+  </select>
+</mapper>

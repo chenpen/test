@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fh.dao.plat.PlatViolateHandlerMapper" >
+  <resultMap id="BaseResultMap" type="com.fh.entity.plat.PlatViolateHandler" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="invalid_type" property="invalidType" jdbcType="VARCHAR" />
+    <result column="invalid_id" property="invalidId" jdbcType="INTEGER" />
+    <result column="deal_no" property="dealNo" jdbcType="VARCHAR" />
+    <result column="deal_reason" property="dealReason" jdbcType="VARCHAR" />
+    <result column="deal_explanation" property="dealExplanation" jdbcType="VARCHAR" />
+    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, invalid_type, invalid_id, deal_no, deal_reason, deal_explanation, deal_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plat_violate_handler
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plat_violate_handler
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fh.entity.plat.PlatViolateHandler" useGeneratedKeys="true" keyProperty="id">
+    insert into plat_violate_handler (id, invalid_type, invalid_id, 
+      deal_no, deal_reason, deal_explanation, 
+      deal_time)
+    values (#{id,jdbcType=INTEGER}, #{invalidType,jdbcType=VARCHAR}, #{invalidId,jdbcType=INTEGER}, 
+      #{dealNo,jdbcType=VARCHAR}, #{dealReason,jdbcType=VARCHAR}, #{dealExplanation,jdbcType=VARCHAR}, 
+      #{dealTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fh.entity.plat.PlatViolateHandler" useGeneratedKeys="true" keyProperty="id">
+    insert into plat_violate_handler
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="invalidType != null" >
+        invalid_type,
+      </if>
+      <if test="invalidId != null" >
+        invalid_id,
+      </if>
+      <if test="dealNo != null" >
+        deal_no,
+      </if>
+      <if test="dealReason != null" >
+        deal_reason,
+      </if>
+      <if test="dealExplanation != null" >
+        deal_explanation,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="invalidType != null" >
+        #{invalidType,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidId != null" >
+        #{invalidId,jdbcType=INTEGER},
+      </if>
+      <if test="dealNo != null" >
+        #{dealNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealReason != null" >
+        #{dealReason,jdbcType=VARCHAR},
+      </if>
+      <if test="dealExplanation != null" >
+        #{dealExplanation,jdbcType=VARCHAR},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fh.entity.plat.PlatViolateHandler" >
+    update plat_violate_handler
+    <set >
+      <if test="invalidType != null" >
+        invalid_type = #{invalidType,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidId != null" >
+        invalid_id = #{invalidId,jdbcType=INTEGER},
+      </if>
+      <if test="dealNo != null" >
+        deal_no = #{dealNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealReason != null" >
+        deal_reason = #{dealReason,jdbcType=VARCHAR},
+      </if>
+      <if test="dealExplanation != null" >
+        deal_explanation = #{dealExplanation,jdbcType=VARCHAR},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fh.entity.plat.PlatViolateHandler" >
+    update plat_violate_handler
+    set invalid_type = #{invalidType,jdbcType=VARCHAR},
+      invalid_id = #{invalidId,jdbcType=INTEGER},
+      deal_no = #{dealNo,jdbcType=VARCHAR},
+      deal_reason = #{dealReason,jdbcType=VARCHAR},
+      deal_explanation = #{dealExplanation,jdbcType=VARCHAR},
+      deal_time = #{dealTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findPlatViolateHandlerByInvalidId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from plat_violate_handler
+    where invalid_id = #{invalidId,jdbcType=INTEGER} and invalid_type=#{invalidType,jdbcType=INTEGER}
+    ORDER  by id desc
+    limit 1
+  </select>
+</mapper>
